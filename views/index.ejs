@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    VsCODE
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+
+  <div id="wrapper">
+    <div class="main">
+      <div class="left">
+
+        <div class="nev">
+          <h1>
+            <%=folders%>
+          </h1>
+          <div class="icons">
+            <i id="file-btn" class="ri-file-add-line"></i>
+            <i id="folder-btn" class="ri-folder-add-line"></i>
+            <a style="text-decoration: none; color: white;" href="/"><i class="ri-refresh-line"></i></a>
+          </div>
+        </div>
+
+
+        <form action="/cretefiles">
+          <input id="createfile" style="display: none;" type="text" name="createfileinput" placeholder="filename">
+        </form>
+
+        <form action="/cretefolder">
+          <input id="createfolder" style="display: none;" type="text" name="createfolderinput" placeholder="foldername">
+        </form>
+
+        <% files.forEach((file)=>{%>
+          <div id="elem">
+
+            <%if(file.isDirectory()){%>
+              <i class="ri-folder-line"></i>
+              <%}else{%>
+                <i class="ri-file-line"></i>
+                <%}%>
+                  <div class="files">
+                    <h3>
+                      <%=file.name%>
+                    </h3>
+                    <div style="display: flex; gap: 2px;">
+                      <i class="ri-edit-line"></i>
+                      <%if(file.isDirectory()){%>
+                        <a href="/delete/folder/<%=file.name%>"><i class="ri-delete-bin-7-line"></i></a>
+                        <%}else{%>
+                          <a href="/delete/file/<%=file.name%>"><i class="ri-delete-bin-7-line"></i></a>
+                          <%}%>
+                    </div>
+                  </div>
+          </div>
+          <%})%>
+
+      </div>
+      <div class="right"></div>
+    </div>
+  </div>
+
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
+</html>
